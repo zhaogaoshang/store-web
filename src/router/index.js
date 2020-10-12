@@ -23,6 +23,15 @@ const router = new Router({
         required: false,
         title: '登录'
       }
+    },
+    {
+      path: '/registered',
+      name: 'registered',
+      component: resolve => require(['@/views/Registered'], resolve),
+      meta: {
+        required: false,
+        title: '注册'
+      }
     }
   ]
 })

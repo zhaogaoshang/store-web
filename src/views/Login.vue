@@ -17,7 +17,7 @@
         <el-button type="primary" size="medium" @click="handleLogoin">登录</el-button>
         <div class="zhuce">
           <i>忘记密码</i>
-          <i>注册</i>
+          <i @click="handleRegistered">注册</i>
         </div>
       </div>
     </div>
@@ -46,11 +46,14 @@ export default {
         ...this.params
       }).then(res => {
         localStorage.setItem('userInfo', JSON.stringify(res))
+        this.$router.push('/')
       })
-    }
+    },
 
     // 注册
-
+    handleRegistered () {
+      this.$router.push('/registered')
+    }
   }
 }
 </script>
