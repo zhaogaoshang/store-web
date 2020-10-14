@@ -14,7 +14,7 @@
             <el-submenu :index="index+''" v-for="(item,index) in side" :key="index">
               <template slot="title">{{item.name}}</template>
               <el-menu-item-group>
-                <el-menu-item :index="index + '-' +idx" v-for="(only,idx) in item.sideSun" :key="idx" @click="handleSearch(only)">{{only.name}}</el-menu-item>
+                <el-menu-item :index="index + '-' +idx" v-for="(only,idx) in item.sideSun" :key="idx" @click="handlego(only)">{{only.name}}</el-menu-item>
               </el-menu-item-group>
             </el-submenu>
           </el-menu>
@@ -26,7 +26,9 @@
       <!-- 上边 -->
       <div class="global-top"></div>
       <!-- 下边 -->
-      <div class="global-bottom"></div>
+      <div class="global-bottom">
+        <router-view></router-view>
+      </div>
     </div>
   </div>
 </template>
@@ -63,7 +65,7 @@ export default {
             {
               name: '查找入库单',
               path: '/product/list'
-            },
+            }
           ]
         },
         {
@@ -91,8 +93,8 @@ export default {
           name: '分类',
           sideSun: [
             {
-              name: '添加分类',
-              path: '/product/list'
+              name: '分类列表',
+              path: '/category/list'
             },
             {
               name: '删除分类',
@@ -147,8 +149,8 @@ export default {
   },
 
   methods: {
-    handlego () {
-      this.$router.push('/login')
+    handlego (e) {
+      this.$router.push(e.path)
     }
   }
 }

@@ -2,6 +2,12 @@ import Vue from 'vue'
 import Router from 'vue-router'
 // import HelloWorld from '@/components/HelloWorld'
 
+const originalPush = Router.prototype.push
+
+Router.prototype.push = function push (location) {
+  return originalPush.call(this, location).catch(err => err)
+}
+
 Vue.use(Router)
 
 const router = new Router({
@@ -13,7 +19,18 @@ const router = new Router({
       meta: {
         required: true,
         title: '页面设置'
-      }
+      },
+      children: [
+        {
+          path: '/category/list',
+          name: '分类列表',
+          component: resolve => require(['@/views/category/List'], resolve),
+          meta: {
+            required: true,
+            title: '分类列表'
+          }
+        }
+      ]
     },
     {
       path: '/login',

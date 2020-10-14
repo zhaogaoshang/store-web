@@ -11,7 +11,7 @@ function host () {
 
 const instance = axios.create({
   baseURL: host(),
-  timeout: 3000,
+  timeout: 10000,
   headers: {
     'Access-Control-Allow-Origin': '*',
     'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8',
@@ -29,7 +29,7 @@ instance.interceptors.request.use((config) => {
   console.log(config.params)
   // 在发送请求之前做些什么
   config.params = {
-    // ...config.params
+    ...config.params
   }
 
   if (config.method === 'post') {
