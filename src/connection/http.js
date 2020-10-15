@@ -42,11 +42,10 @@ instance.interceptors.request.use((config) => {
 })
 
 instance.interceptors.response.use(result => {
-  if (result.data.code === 2) {
-    alert(result.data.massage)
-  } else {
-    return result.data.data
-  }
-}, error => alert(error))
+  return result.data
+}, error => {
+  alert('网络错误或服务器忙')
+  return Promise.reject(error)
+})
 
 export default instance

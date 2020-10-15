@@ -45,8 +45,12 @@ export default {
       this.$axios.post(api.user_login, {
         ...this.params
       }).then(res => {
-        localStorage.setItem('userInfo', JSON.stringify(res))
-        this.$router.push('/')
+        if (res.code === 1) {
+          localStorage.setItem('userInfo', JSON.stringify(res.data))
+          this.$router.push('/')
+        } else {
+          this.$message(res.massage)
+        }
       })
     },
 
